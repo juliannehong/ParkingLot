@@ -1,5 +1,4 @@
-#ifndef Level_h
-#define Level_h
+#pragma once
 
 #include <stdio.h>
 #include "ParkingLot.h"
@@ -24,11 +23,12 @@ private:
 
   int _levelNumber;
 
-
-  std::array<Spot*, NUM_LARGE_SPOT> _largeSpots;
-  std::array<Spot*, NUM_COMPACT_SPOT> _compactSpots;
-  std::array<Spot*, NUM_SMALL_SPOT> _smallSpots;
-
+  struct _spots {
+    std::array<Spot*, NUM_LARGE_SPOT> _largeSpots;
+    std::array<Spot*, NUM_COMPACT_SPOT> _compactSpots;
+    std::array<Spot*, NUM_SMALL_SPOT> _smallSpots;
+  }* _spotsInLevel;
+  
   int _numLargeSpotLeft;
   int _numCompactSpotLeft;
   int _numSmallSpotLeft;
@@ -38,4 +38,5 @@ private:
 
   bool _full;
 };
-#endif
+
+static_assert(sizeof(Level) == 40, "Level is not properly sized!");

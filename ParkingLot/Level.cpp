@@ -1,17 +1,18 @@
 #include "Level.h"
 #include "Spot.h"
 #include <iostream>
+#include <stdint.h>
 
 Level::Level(int floor) :
   _levelNumber(floor), _numLargeSpotLeft(NUM_LARGE_SPOT), _numCompactSpotLeft(NUM_COMPACT_SPOT), _numSmallSpotLeft(NUM_SMALL_SPOT),
-  _firstAvailableLargeSpotIndex(0), _firstAvailableCompactSpotIndex(0), _firstAvailableSmallSpotIndex(0) {
+  _firstAvailableLargeSpotIndex(0), _firstAvailableCompactSpotIndex(0), _firstAvailableSmallSpotIndex(0), _spotsInLevel(new  {
   
   for (int i = 0; i < NUM_LARGE_SPOT; ++i)
-    _largeSpots[i] = new Spot(floor, i, Bus);
+    _spotsInLevel->_largeSpots[i] = new Spot(floor, i, Bus);
   for (int i = 0; i < NUM_COMPACT_SPOT; ++i)
-    _compactSpots[i] = new Spot(floor, i, Compact);
+    _spotsInLevel->_compactSpots[i] = new Spot(floor, i, Compact);
   for (int i = 0; i < NUM_SMALL_SPOT; ++i) {
-    _compactSpots[i] = new Spot(floor, i, Motocycle);
+    _spotsInLevel->_compactSpots[i] = new Spot(floor, i, Motocycle);
   }
 }
 
